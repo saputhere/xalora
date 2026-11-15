@@ -1,7 +1,7 @@
 import { ValidationError } from "../../../shared/errors/app-errors";
 import type { PasswordHasher } from "../domain/password-hasher";
 import type { AuthRepository, RegisteredAccount } from "../domain/auth-repository";
-import { registerSchema, type RegisterInput } from "./register-schema";
+import { registerSchema } from "./register-schema";
 
 export class RegisterOrganizationUseCase {
   constructor(
@@ -9,7 +9,7 @@ export class RegisterOrganizationUseCase {
     private readonly passwordHasher: PasswordHasher,
   ) {}
 
-  async execute(input: RegisterInput): Promise<RegisteredAccount> {
+  async execute(input: unknown): Promise<RegisteredAccount> {
     const parsed = registerSchema.safeParse(input);
 
     if (!parsed.success) {

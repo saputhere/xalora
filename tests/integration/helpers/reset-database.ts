@@ -6,5 +6,6 @@ export async function resetDatabase(): Promise<void> {
     throw new Error("Refusing to reset a database outside the test environment.");
   }
 
-  await db.execute(sql`truncate table users, organizations restart identity cascade`);
+  // Sessions are listed explicitly so the reset stays correct if the schema changes.
+  await db.execute(sql`truncate table sessions, users, organizations restart identity cascade`);
 }

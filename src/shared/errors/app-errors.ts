@@ -4,3 +4,10 @@ export class ValidationError extends Error {
     this.name = "ValidationError";
   }
 }
+
+export class InvalidJsonError extends Error {
+  constructor() {
+    super("Request body must be valid JSON");
+    this.name = "InvalidJsonError";
+  }
+}
